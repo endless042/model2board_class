@@ -59,6 +59,7 @@ public class ListAction implements CommandHandler {
 		req.setAttribute("number", number);
 		
 		
+		
 		return "/view/list.jsp";
 	}
 

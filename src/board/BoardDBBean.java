@@ -308,9 +308,14 @@ public class BoardDBBean {
 				
 				pstmt.setInt(1, num);
 				pstmt.setString(2,passwd);
+				
 				x=pstmt.executeUpdate();
 				
-			
+				
+				sql="delete from board where ref=?";
+				pstmt=con.prepareStatement(sql);
+				pstmt.setInt(1, num);
+				pstmt.executeUpdate();
 				
 				}catch(Exception e) {
 					e.printStackTrace();

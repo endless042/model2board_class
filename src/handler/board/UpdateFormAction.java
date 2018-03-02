@@ -30,18 +30,12 @@ public class UpdateFormAction implements CommandHandler{
 				BoardDBBean dbPro=BoardDBBean.getInstance();
 				BoardDataBean article=dbPro.getArticle(num,boardid,"update");
 				
-				req.setAttribute("boardid", boardid);
-				   req.setAttribute("pageNum", 1);
-				   req.setAttribute("num", num);
+				
+				   req.setAttribute("pageNum", pageNum);
 				 req.setAttribute("article", article);
 				 
 			}catch(Exception e) {}
 		
-			
-			  
-			  
-			    
-			  
 		return "/view/updateForm.jsp";
 	}
 	

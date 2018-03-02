@@ -2,7 +2,7 @@
 <%@page import="board.BoardDBBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-      <% request.setCharacterEncoding("utf-8"); %>
+    
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,10 +19,12 @@
 <center><h2 class="w3-wide w3-center">글수정</h2>
 <br>
 <form method="post" name="writeform" action="updatePro" >
-<input type="hidden" name="boardid" value="${boardid }">
-<input type="hidden" name="num" value="${num }">
+<input type="hidden" name="boardid" value="${article.boardid }">
+<input type="hidden" name="num" value="${article.num }">
+<input type="hidden" name="ref" value="${article.ref}">
+<input type="hidden" name="re_step" value="${article.re_step}">
+<input type="hidden" name="re_level" value="${article.re_level}">
 <input type="hidden" name="pageNum" value="${pageNum}">
-
 
 
 <table class="w3-table w3-bordered  w3-striped "  style="width:70%;" >
@@ -34,7 +36,7 @@
    <tr>
     <td  width="70"   align="center">이 름</td>
     <td  width="330">
-       <input type="text" size="10" maxlength="10" name="writer" value="${ article.getWriter()}"></td>
+       <input type="text" size="10" maxlength="10" name="writer" value="${article.writer}"></td>
   </tr>
   <tr>
     <td  width="70"   align="center" >제 목
@@ -42,7 +44,7 @@
     <td width="330">
  
  
-       <input type="text" size="40" maxlength="50" name="subject" value="${article.getSubject() }">
+       <input type="text" size="40" maxlength="50" name="subject" value="${article.subject}">
 	
    
    </td>
@@ -50,12 +52,12 @@
   <tr>
     <td  width="70"   align="center">Email</td>
     <td  width="330">
-       <input type="text" size="40" maxlength="30" name="email" value="${ article.getEmail()}"></td>
+       <input type="text" size="40" maxlength="30" name="email" value="${article.email}"></td>
   </tr>
   <tr>
     <td  width="70"   align="center" >내 용</td>
     <td  width="330" >
-     <textarea name="content" rows="13" cols="40">${ article.getContent() }</textarea> </td>
+     <textarea name="content" rows="13" cols="40">${article.content}</textarea> </td>
   </tr>
   <tr>
     <td  width="70"   align="center" >비밀번호</td>

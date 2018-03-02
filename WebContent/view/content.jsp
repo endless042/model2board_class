@@ -11,27 +11,7 @@
 <title>게시판</title>
  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
-<%
-	String boardid=request.getParameter("boardid");
-	if(boardid==null) boardid="1";
 
-%>
-<% 
-	int num=Integer.parseInt(request.getParameter("num"));
-	String pageNum=request.getParameter("pageNum");
-	if(pageNum==null||pageNum==""){
-		pageNum="1";}
-	
-	SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm");
-	try{
-		BoardDBBean dbPro=BoardDBBean.getInstance();
-		BoardDataBean article=dbPro.getArticle(num,boardid,"content");
-		int ref=article.getRef();
-		int re_step=article.getRe_step();
-		int re_level=article.getRe_level();
-		
-		%>
-	
 
 <body><center><h2 class="w3-wide w3-center">글 내용 보기</h2>
 
@@ -40,38 +20,41 @@
 
 <tr height="30" >
 <td width="125" align="center"><b>글번호</b></td>
-<td width="125" align="center"><%=article.getNum() %></td>
+<td width="125" align="center">${article.num}</td>
 <td width="125" align="center"><b>조회수</b></td>
-<td width="125" align="center"><%= article.getReadcount()%></td>
+<td width="125" align="center">${article.readcount}</td>
 </tr>
 
 <tr height="30">
 <td width="125" align="center"><b>작성자</b></td>
-<td width="125" align="center"><%=article.getWriter() %></td>
+<td width="125" align="center">${article.writer}</td>
 <td width="125" align="center"><b>작성일</b></td>
-<td width="125" align="center"><%= sdf.format(article.getReg_date())%></td>
+<td width="125" align="center">${article.reg_date}</td>
 </tr>
 
 <tr height="30">
 <td width="125" align="center"><b>글제목</b></td>
-<td width="375" align="center" colspan="3"><%= article.getSubject()%></td></tr>
+<td width="375" align="center" colspan="3">${article.subject}</td></tr>
 
 <tr height="30">
 <td width="125" align="center"><b>글내용</b></td>
-<td width="375" align="left" colspan="3"><pre><%= article.getContent() %></pre></td></tr>
+<td width="375" align="left" colspan="3"><pre>${article.content}</pre></td></tr>
 
 <tr height="30">
 <td colspan="4" class="w3-center">
-<input type="button" class="w3-button w3-hover-black" value="수정" onclick="document.location.href='<%=request.getContextPath()%>/board/updateForm?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+<input type="button" class="w3-button w3-hover-black" 
+value="수정" onclick="document.location.href='updateForm?num=${article.num}&pageNum=${pageNum}'">
 &nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" class="w3-button w3-hover-black" value="삭제" onclick="document.location.href='<%=request.getContextPath()%>/board/deleteForm?num=<%=article.getNum()%>&pageNum=<%=pageNum%>'">
+<input type="button" class="w3-button w3-hover-black" 
+value="삭제" onclick="document.location.href='deleteForm?num=${article.num}&pageNum=${pageNum}'">
 &nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" class="w3-button w3-hover-black" value="답글쓰기" onclick="document.location.href='<%=request.getContextPath()%>/board/writeForm?num=<%=num%>&ref=<%=ref%>&re_step=<%=re_step%>&re_level=<%=re_level%>&pageNum=<%=pageNum%>'">
+<input type="button" class="w3-button w3-hover-black" 
+value="답글쓰기" onclick="document.location.href='writeForm?num=${num}&ref=${ref}&re_step=${re_step}&re_level=${re_level}&pageNum=${pageNum}'">
 &nbsp;&nbsp;&nbsp;&nbsp;
-<input type="button" class="w3-button w3-hover-black" value="목록" onclick="document.location.href='<%=request.getContextPath()%>/board/list?pageNum=<%=pageNum%>'">
+<input type="button" class="w3-button w3-hover-black" 
+value="목록" onclick="document.location.href='list?pageNum=${pageNum}'">
 </td></tr></table>
 
-<% }catch(Exception e){} %>
 
 
 </div>
