@@ -26,7 +26,7 @@
 			
 		</span>
 		<p class="w3-right w3-padding-right-large">
-			<a href="writeForm">글쓰기</a>
+			<a href="writeFormUpload">글쓰기</a>
 		</p>
 		
 		

@@ -87,8 +87,8 @@ public class BoardDBBean {
 		
 		
 		sql="insert into board(num, writer,email,subject,passwd,"
-				+ "reg_date,ref,re_step,re_level,content,ip,boardid) ";
-		sql+="values(?,?,?,?,?,sysdate,?,?,?,?,?,?)";
+				+ "reg_date,ref,re_step,re_level,content,ip,boardid,filename,filesize) ";
+		sql+="values(?,?,?,?,?,sysdate,?,?,?,?,?,?,?,?)";
 		
 		pstmt=con.prepareStatement(sql);
 		pstmt.setInt(1, number);
@@ -102,6 +102,9 @@ public class BoardDBBean {
 		pstmt.setString(9, article.getContent());
 		pstmt.setString(10, article.getIp());
 		pstmt.setString(11, article.getBoardid());
+		pstmt.setString(12, article.getFilename());
+		pstmt.setInt(13, article.getFilesize());
+		
 		pstmt.executeQuery();
 		
 		}catch(SQLException e) {
